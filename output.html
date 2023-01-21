@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+<label for="">FirstNumber </label><input type="textbox" name="input1"><br>
+<label for="">SecondNumber: </label><input type="textbox" name="input2"><br>
+<button onClick="add()">Add Two Nnumbers</button><br>
+<label for="displayValue">The addition is: </label><input type="textbox" name="display">
+<script>
+   function add() {
+      var f = parseInt(document.getElementsByName('input1')[0].value);
+      var s =parseInt(document.getElementsByName('input2')[0].value);
+      var result = f+s;
+      document.getElementsByName('display')[0].value= result;
+   }
+</script>
+</body>
+</html>
