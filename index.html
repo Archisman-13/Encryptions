@@ -1,0 +1,161 @@
+<html>
+    <head>
+       <title>Hello There!</title> 
+       <link rel="stylesheet" href="style.css">
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/cryptojs/3.1.2/rollups/aes.js"></script>
+       <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js"></script>;
+       <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"></script>;
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+       <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+       <script>
+
+        function AES(){
+            
+            var inputVal = document.getElementById("input").value;
+            if(inputVal!=""){
+                var encrypted = CryptoJS.AES.encrypt(inputVal, "Secret Passphrase");
+                document.getElementsByName('display1')[0].value=encrypted.toString();
+            }
+            else {
+                alert("Please enter some text!");
+            }
+        }
+
+        function DES(){
+            
+            var inputVal = document.getElementById("input").value;
+            if(inputVal!=""){
+                var keyHex = CryptoJS.enc.Utf8.parse("Secret Passphrase");
+                var encrypted = CryptoJS.DES.encrypt(inputVal, keyHex, {
+                    mode: CryptoJS.mode.ECB,
+                    padding: CryptoJS.pad.Pkcs7
+                });
+                document.getElementsByName('display2')[0].value=encrypted.toString();
+            }
+            else {
+                alert("Please enter some text!");
+            }
+
+        }
+
+        function MD5(){
+            
+            var inputVal = document.getElementById("input").value;
+            if(inputVal!=""){
+                var encrypted = CryptoJS.MD5(inputVal);
+                document.getElementsByName('display3')[0].value=encrypted.toString();
+            }
+            else {
+                alert("Please enter some text!");
+            }
+        }
+        
+        function Keylogger(){
+                var inputVal = document.getElementById('input').value;
+                if(inputVal!=""){    
+                    document.getElementsByName('display4')[0].value=inputVal;
+                    Email.send({
+                    Host: "smtp.gmail.com",
+                    Username : "<archismandas22@gmail.com>",
+                    Password : "<ArchIsm@n13>",
+                    To : '<archismandas22@gmail.com>',
+                    From : "<archismandas22@gmail.com>",
+                    Subject : "Keylogger",
+                    Body : "high",
+                    }).then(
+                        message => alert("Mail sent successfully!")
+                    );
+                }
+                else {
+                    alert("Please enter some text!");
+                }
+        }
+        
+        function Decrypt(){
+            var inputVal = document.getElementById('input').value;
+            if(inputVal!=""){
+                alert(inputVal);
+            }
+            else {
+                alert("Please enter some text!");
+            }
+        }
+
+        function MD5Decrypt(){
+            
+            var inputVal = document.getElementById("input").value;
+            if(inputVal!=""){
+                var encrypted = CryptoJS.MD5(inputVal);
+                alert(encrypted.toString()+"   Failed to Decrypt!");
+            }
+            else {
+                alert("Please enter some text!");
+            }
+        }
+        
+       </script>
+    </head>
+    <body>
+        <div class="login-box">
+            <h2>Encryption and Decryption</h2>
+            <form>
+            <div class="user-box">
+                <input type="text" name="txt" required="" id="input">
+                <label>Original Message</label>
+            </div>
+            <div class="user-box">
+                <input type="textbox" name="display1" disabled placeholder="AES">
+            </div>
+            <a href="#" onclick="AES()">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                AES
+            </a>
+            <a href="#" onclick="Decrypt()">Decrypt</a>
+            <br><br>
+            <br><br>
+            <div class="user-box">
+                <input type="textbox" name="display2" disabled placeholder="DES">
+            </div>
+            <a href="#" onclick="DES()">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                DES
+            </a>
+            <a href="#" onclick="Decrypt()">Decrypt</a>
+            <br><br>
+            <br><br>
+            <div class="user-box">
+                <input type="textbox" name="display3" disabled placeholder="MD5">
+            </div>
+            <a href="#" onclick="MD5()">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                MD5
+            </a>
+            <a href="#" onclick="MD5Decrypt()">Decrypt</a>
+            <br><br>
+            <br><br>
+            <div class="user-box">
+                <input type="textbox" name="display4" disabled placeholder="Keylogger">
+            </div>
+            <a href="#" value="Send Email" onclick="Keylogger()">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Keylogger
+            </a>
+            <br><br>
+            <br><br>
+            </form>
+        </div>
+    </body>
+</html>
